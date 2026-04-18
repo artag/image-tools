@@ -211,7 +211,7 @@ public class ArgumentsTests
 public enum TestOptions
 {
     /// <summary>
-    /// Some test option name.
+    /// Some test option type.
     /// </summary>
     Test,
 }
