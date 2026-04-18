@@ -3,9 +3,9 @@
 /// <summary>
 /// Option for boolean flags.
 /// </summary>
-/// <param name="OptionName">Option name.</param>
-public record BooleanOption<T>(T OptionName)
-    : Option<T>(OptionName, OptionType.Boolean)
+/// <param name="OptionType">Option type.</param>
+public record BooleanOption<T>(T OptionType)
+    : Option<T>(OptionType, OptionValueType.Boolean)
     where T : Enum
 {
     /// <inheritdoc/>

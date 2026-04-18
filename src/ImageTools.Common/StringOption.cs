@@ -5,9 +5,9 @@ namespace ImageTools.Common;
 /// <summary>
 /// Option for string values with file system character validation.
 /// </summary>
-/// <param name="OptionName">Option name.</param>
-public record StringOption<T>(T OptionName)
-    : Option<T>(OptionName, OptionType.String)
+/// <param name="OptionType">Option type.</param>
+public record StringOption<T>(T OptionType)
+    : Option<T>(OptionType, OptionValueType.String)
     where T : Enum
 {
     private static char[] GetInvalidChars()

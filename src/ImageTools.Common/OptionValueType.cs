@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the data types supported by the command line options.
 /// </summary>
-public enum OptionType
+public enum OptionValueType
 {
     /// <summary>
     /// Represents a true/false switch.

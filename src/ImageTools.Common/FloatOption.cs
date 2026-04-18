@@ -5,9 +5,9 @@ namespace ImageTools.Common;
 /// <summary>
 /// Option for floating point values with range validation.
 /// </summary>
-/// <param name="OptionName">Option name.</param>
-public record FloatOption<T>(T OptionName)
-    : Option<T>(OptionName, OptionType.Float)
+/// <param name="OptionType">Option type.</param>
+public record FloatOption<T>(T OptionType)
+    : Option<T>(OptionType, OptionValueType.Float)
     where T : Enum
 {
     /// <summary>

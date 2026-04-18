@@ -5,9 +5,9 @@ namespace ImageTools.Common;
 /// <summary>
 /// Option for integer values with range validation.
 /// </summary>
-/// <param name="OptionName">Option name.</param>
-public record IntegerOption<T>(T OptionName)
-    : Option<T>(OptionName, OptionType.Integer)
+/// <param name="OptionType">Option type.</param>
+public record IntegerOption<T>(T OptionType)
+    : Option<T>(OptionType, OptionValueType.Integer)
     where T : Enum
 {
     /// <summary>

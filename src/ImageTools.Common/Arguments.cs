@@ -77,7 +77,7 @@ public class Arguments<T>
                     $"Unknown argument {args[i]}.");
             }
 
-            var val = (opt.Type is not OptionType.Boolean && i + 1 < args.Length)
+            var val = (opt.ValueType is not OptionValueType.Boolean && i + 1 < args.Length)
                 ? args[++i]
                 : null;
 

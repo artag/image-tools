@@ -51,6 +51,11 @@ public enum ImageToolsExceptionCode
     InvalidWorkMode,
 
     /// <summary>
+    /// Unknown option.
+    /// </summary>
+    OptionNotFound,
+
+    /// <summary>
     /// Indicates an error occurred during the saving process.
     /// </summary>
     SaveFailure,
