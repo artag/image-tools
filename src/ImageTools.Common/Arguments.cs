@@ -1,5 +1,4 @@
-﻿
-namespace ImageTools.Common;
+﻿namespace ImageTools.Common;
 
 /// <summary>
 /// Handles CLI arguments parsing and validation.
