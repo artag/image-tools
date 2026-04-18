@@ -5,7 +5,10 @@ namespace ImageTools.Common;
 /// <summary>
 /// Option for floating point values with range validation.
 /// </summary>
-public record FloatOption() : Option(OptionType.Float)
+/// <param name="OptionName">Option name.</param>
+public record FloatOption<T>(T OptionName)
+    : Option<T>(OptionName, OptionType.Float)
+    where T : Enum
 {
     /// <summary>
     /// Gets the minimum allowed value.

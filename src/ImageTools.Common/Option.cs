@@ -5,9 +5,14 @@ namespace ImageTools.Common;
 /// <summary>
 /// Base record representing a command line option.
 /// </summary>
+/// <param name="OptionName">Option name.</param>
 /// <param name="Type">Option type.</param>
 /// <param name="DefaultValue">Optional default value.</param>
-public abstract record Option(OptionType Type, object? DefaultValue = default)
+public abstract record Option<T>(
+    T OptionName,
+    OptionType Type,
+    object? DefaultValue = default)
+    where T : Enum
 {
     /// <summary>
     /// Gets the list of alternative names (e.g., "-f", "--file").

@@ -3,27 +3,20 @@
 /// <summary>
 /// Handles CLI arguments parsing and validation.
 /// </summary>
-public class Arguments
+/// <typeparam name="T">Options name.</typeparam>
+public class Arguments<T>
+    where T : Enum
 {
-    private readonly List<Option> _options = new List<Option>();
+    private readonly List<Option<T>> _options = new List<Option<T>>();
     private readonly List<string[]> _exclusiveGroups = new List<string[]>();
 
     /// <summary>
     /// Adds a possible options to the processor.
     /// </summary>
     /// <param name="options">The option definitions.</param>
-    public void AddOptions(params Option[] options)
+    public void AddOptions(params Option<T>[] options)
     {
         _options.AddRange(options);
-    }
-
-    /// <summary>
-    /// Clear all options.
-    /// </summary>
-    public void ClearAllOptions()
-    {
-        _options.Clear();
-        _exclusiveGroups.Clear();
     }
 
     /// <summary>
@@ -40,7 +33,7 @@ public class Arguments
     /// </summary>
     /// <param name="args">Raw arguments from CLI.</param>
     /// <returns>Array of populated options.</returns>
-    public ICollection<Option> Process(ICollection<string> args)
+    public ICollection<Option<T>> Process(ICollection<string> args)
     {
         if (args is null || args.Count is 0)
         {
@@ -54,7 +47,7 @@ public class Arguments
         return SetOptionsDefaultValues().ToArray();
     }
 
-    private IEnumerable<Option> SetOptionsDefaultValues()
+    private IEnumerable<Option<T>> SetOptionsDefaultValues()
     {
         foreach (var o in _options)
         {
@@ -92,7 +85,7 @@ public class Arguments
         }
     }
 
-    private Option? FindOption(string name)
+    private Option<T>? FindOption(string name)
     {
         return _options.FirstOrDefault(o => o.Names.Contains(name));
     }

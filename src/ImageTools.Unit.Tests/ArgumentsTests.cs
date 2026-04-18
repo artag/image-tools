@@ -3,18 +3,18 @@
 namespace ImageTools.Unit.Tests;
 
 /// <summary>
-/// Tests for <see cref="Arguments"/>.
+/// Tests for <see cref="Arguments{T}"/>.
 /// </summary>
 public class ArgumentsTests
 {
-    private readonly Arguments _sut;
+    private readonly Arguments<TestOptions> _sut;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ArgumentsTests"/> class.
     /// </summary>
     public ArgumentsTests()
     {
-        _sut = new Arguments();
+        _sut = new Arguments<TestOptions>();
         SetupStandardOptions();
     }
 
@@ -94,7 +94,11 @@ public class ArgumentsTests
     [Fact]
     public void Missing_required_option_Throws_exception()
     {
-        _sut.AddOptions(new StringOption { Names = ["-req"], IsRequired = true, });
+        _sut.AddOptions(new StringOption<TestOptions>(TestOptions.Test)
+        {
+            Names = ["-req"],
+            IsRequired = true,
+        });
         string[] args = ["-f", "test.jpg"];
 
         var ex = Assert.Throws<ImageToolsException>(() => _sut.Process(args));
@@ -159,41 +163,41 @@ public class ArgumentsTests
 
     private void SetupStandardOptions()
     {
-        var options = new Option[]
+        var options = new Option<TestOptions>[]
         {
-            new IntegerOption
+            new IntegerOption<TestOptions>(TestOptions.Test)
             {
                 Names = ["-i"],
                 Min = 10,
                 Max = 20,
                 DefaultValue = 11,
             },
-            new FloatOption
+            new FloatOption<TestOptions>(TestOptions.Test)
             {
                 Names = ["-d"],
                 Min = 1.5,
                 Max = 5.5,
                 DefaultValue = 1.6,
             },
-            new StringOption
+            new StringOption<TestOptions>(TestOptions.Test)
             {
                 Names = new[] { "-s" },
                 DefaultValue = "unknown",
             },
-            new BooleanOption
+            new BooleanOption<TestOptions>(TestOptions.Test)
             {
                 Names = new[] { "-bt" },
                 DefaultValue = false,
             },
-            new BooleanOption
+            new BooleanOption<TestOptions>(TestOptions.Test)
             {
                 Names = new[] { "-bf" },
             },
-            new StringOption
+            new StringOption<TestOptions>(TestOptions.Test)
             {
                 Names = new[] { "-dir" },
             },
-            new StringOption
+            new StringOption<TestOptions>(TestOptions.Test)
             {
                 Names = new[] { "-f" },
             },
@@ -202,4 +206,12 @@ public class ArgumentsTests
         _sut.AddOptions(options);
         _sut.AddExclusiveGroup("-f", "-dir");
     }
+}
+
+public enum TestOptions
+{
+    /// <summary>
+    /// Some test option name.
+    /// </summary>
+    Test,
 }

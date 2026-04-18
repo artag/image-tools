@@ -5,7 +5,10 @@ namespace ImageTools.Common;
 /// <summary>
 /// Option for integer values with range validation.
 /// </summary>
-public record IntegerOption() : Option(OptionType.Integer)
+/// <param name="OptionName">Option name.</param>
+public record IntegerOption<T>(T OptionName)
+    : Option<T>(OptionName, OptionType.Integer)
+    where T : Enum
 {
     /// <summary>
     /// Gets the minimum allowed value.

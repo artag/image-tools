@@ -6,13 +6,15 @@ namespace ImageTools.Implementation;
 /// <summary>
 /// Base program.
 /// </summary>
+/// <typeparam name="T">Options name.</typeparam>
 /// <param name="appName">Application name.</param>
 /// <param name="versionProvider">Application version provider.</param>
 /// <param name="log">Logger.</param>
-public abstract class BaseProgram(
+public abstract class BaseProgram<T>(
     string appName,
     IVersionProvider versionProvider,
     ILog log)
+    where T : Enum
 {
     /// <summary>
     /// Run program.
@@ -20,10 +22,10 @@ public abstract class BaseProgram(
     /// <param name="args">Input arguments from CLI.</param>
     /// <param name="options">Command line options.</param>
     /// <returns>Asynchronous operation.</returns>
-    public async Task Run(ICollection<string> args, ICollection<Option> options)
+    public async Task Run(ICollection<string> args, ICollection<Option<T>> options)
     {
         var usage = new Usage(appName, versionProvider, log);
-        var cli = new Arguments();
+        var cli = new Arguments<T>();
 
         try
         {
@@ -50,5 +52,5 @@ public abstract class BaseProgram(
     /// </summary>
     /// <param name="options">Options.</param>
     /// <returns>Asynchronous operation.</returns>
-    protected abstract Task Process(ICollection<Option> options);
+    protected abstract Task Process(ICollection<Option<T>> options);
 }

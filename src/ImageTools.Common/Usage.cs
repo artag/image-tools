@@ -16,8 +16,10 @@ public class Usage(
     /// <summary>
     /// Displays help message to the log.
     /// </summary>
+    /// <typeparam name="T">Options name.</typeparam>
     /// <param name="options">Command line options.</param>
-    public void ShowUsage(ICollection<Option> options)
+    public void ShowUsage<T>(ICollection<Option<T>> options)
+        where T : Enum
     {
         var version = versionProvider.GetVersion();
         var info = string.IsNullOrEmpty(version)
