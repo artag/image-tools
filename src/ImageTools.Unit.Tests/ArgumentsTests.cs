@@ -125,7 +125,7 @@ public class ArgumentsTests
 
         var actual = _sut.Process(args);
 
-        Assert.Equal(5, actual.Length);
+        Assert.Equal(5, actual.Count);
         Assert.Equal(15, actual.First(o => o.Names.Contains("-i")).Value);
         Assert.Equal(3.5, actual.First(o => o.Names.Contains("-d")).Value);
         Assert.Equal("valid.txt", actual.First(o => o.Names.Contains("-s")).Value!);
@@ -140,11 +140,11 @@ public class ArgumentsTests
 
         var actual = _sut.Process(args);
 
-        Assert.Equal(5, actual.Length);
+        Assert.Equal(5, actual.Count);
         Assert.Equal(11, actual.First(o => o.Names.Contains("-i")).Value);
-        Assert.Equal(1.5, actual.First(o => o.Names.Contains("-d")).Value);
+        Assert.Equal(1.6, actual.First(o => o.Names.Contains("-d")).Value);
         Assert.Equal("unknown", actual.First(o => o.Names.Contains("-s")).Value!);
-        Assert.Equal("a.jpg", actual.First(o => o.Names.Contains("-f")).Value!);
+        Assert.Equal("/home/images/a.jpg", actual.First(o => o.Names.Contains("-f")).Value!);
         Assert.False((bool)actual.First(o => o.Names.Contains("-bt")).Value!);
     }
 

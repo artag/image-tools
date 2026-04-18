@@ -1,4 +1,5 @@
-﻿namespace ImageTools.Common;
+﻿
+namespace ImageTools.Common;
 
 /// <summary>
 /// Handles CLI arguments parsing and validation.
@@ -40,7 +41,7 @@ public class Arguments
     /// </summary>
     /// <param name="args">Raw arguments from CLI.</param>
     /// <returns>Array of populated options.</returns>
-    public Option[] Process(ICollection<string> args)
+    public ICollection<Option> Process(ICollection<string> args)
     {
         if (args is null || args.Count is 0)
         {
@@ -51,10 +52,25 @@ public class Arguments
 
         ParseArgs(args.ToArray());
         ValidateRequirements();
+        return SetOptionsDefaultValues().ToArray();
+    }
 
-        return _options
-            .Where(o => o.Value != null)
-            .ToArray();
+    private IEnumerable<Option> SetOptionsDefaultValues()
+    {
+        foreach (var o in _options)
+        {
+            if (o.Value is not null)
+            {
+                yield return o;
+                continue;
+            }
+
+            if (o.DefaultValue is not null)
+            {
+               o.Value = o.DefaultValue;
+               yield return o;
+            }
+        }
     }
 
     private void ParseArgs(string[] args)
