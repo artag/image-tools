@@ -23,7 +23,7 @@
 
   <!-- Threat warnings as errors -->
   <PropertyGroup>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <!-- Enable build in .NET analyzers -->
@@ -78,6 +78,7 @@
       CA1031;    <!-- Do not catch general exception types -->
       CA1063;    <!-- Implement IDisposable correctly -->
       CA1716;    <!-- Identifiers should not match keywords -->
+      CA1720;    <!-- Identifiers should not contain type names -->
       CA1816;    <!-- Call GC.SuppressFinalize correctly -->
       CA1819;    <!-- Properties should not return arrays -->
       SA1009;    <!-- Closing parenthesis should be spaced correctly -->
