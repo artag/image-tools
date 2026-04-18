@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "orderingRules": {
+      "elementOrder": [
+        "kind",
+        "constant",
+        "accessibility",
+        "static",
+        "readonly"
+      ]
+    }
+  },
+  "styleCopPlusRules": {
+    "maxLineLength": 100,
+    "maxFileLength": 400,
+    "maxPropertyAccessorLength": 40,
+    "maxMethodLength": 24
+  }
+}

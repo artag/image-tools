@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>itsquare</AssemblyName>
+    <!-- Publish options -->
+    <PublishAot>true</PublishAot>                                <!-- Publish as Native AOT -->
+    <OptimizationPreference>Speed</OptimizationPreference>       <!-- Optimization size and speed on publish -->
+    <TrimMode>full</TrimMode>                                    <!-- Trim unused code -->
+    <InvariantGlobalization>true</InvariantGlobalization>        <!-- Disable specific formats support -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ImageTools.Common\ImageTools.Common.csproj" />
+    <ProjectReference Include="..\ImageTools.Implementation\ImageTools.Implementation.csproj" />
+    <ProjectReference Include="..\ImageTools.Interfaces\ImageTools.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>
+      CA1031;    <!-- Do not catch general exception types -->
+      CA1063;    <!-- Implement IDisposable correctly -->
+      CA1515;    <!-- Consider making public types internal -->
+      CA1707;    <!-- Identifiers should not contain underscores -->
+      CA1716;    <!-- Identifiers should not match keywords -->
+      CA1816;    <!-- Call GC.SuppressFinalize correctly -->
+      CA1819;    <!-- Properties should not return arrays -->
+      CS1591;    <!-- Missing XML comment for publicly visible type or member 'Type_or_Member' -->
+      SA1009;    <!-- Closing parenthesis should be spaced correctly -->
+      SA1010;    <!-- Opening square brackets should be spaced correctly -->
+      SA1313;    <!-- Parameter names must begin with lower case letter -->
+      SA1600;    <!-- Elements must be documented -->
+      SP2101;    <!-- Method is too long -->
+    </NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ImageTools.Square\ImageTools.Square.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

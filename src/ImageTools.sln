@@ -1,0 +1,75 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37012.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageTools.Square", "ImageTools.Square\ImageTools.Square.csproj", "{2A0DD670-1273-4616-BB2E-ED3AAD5AF8CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionFolder", "_SolutionFolder", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		build.cmd = build.cmd
+		Directory.Build.props = Directory.Build.props
+		ImageTools.snk = ImageTools.snk
+		stylecop.json = stylecop.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageTools.Common", "ImageTools.Common\ImageTools.Common.csproj", "{BB146D77-E13E-4A38-8083-F8FE78B4DFCA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Interfaces", "1_Interfaces", "{5734723A-82CC-4FF7-A61E-72863061E234}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageTools.Interfaces", "ImageTools.Interfaces\ImageTools.Interfaces.csproj", "{E9C3E514-6C06-4DBB-9823-AA324BC3524A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_Application", "2_Application", "{816DC7BA-DA6F-455A-9F6C-C3FBCA5BA7F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageTools.Implementation", "ImageTools.Implementation\ImageTools.Implementation.csproj", "{192581E9-DE0D-42FF-910F-51FEF3841F33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Implementation", "3_Implementation", "{F5806C5F-CE95-4492-BFF0-426E40B27F56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4_Top", "4_Top", "{2C6617F1-6C51-47D3-806F-28A6C4AA4DE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5_Tests", "5_Tests", "{6947B26C-B050-40FF-A216-D517F0BCC09C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageTools.Unit.Tests", "ImageTools.Unit.Tests\ImageTools.Unit.Tests.csproj", "{49E3DFB9-769C-43BD-8D8B-06FF85E02E65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A0DD670-1273-4616-BB2E-ED3AAD5AF8CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A0DD670-1273-4616-BB2E-ED3AAD5AF8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A0DD670-1273-4616-BB2E-ED3AAD5AF8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A0DD670-1273-4616-BB2E-ED3AAD5AF8CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB146D77-E13E-4A38-8083-F8FE78B4DFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB146D77-E13E-4A38-8083-F8FE78B4DFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB146D77-E13E-4A38-8083-F8FE78B4DFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB146D77-E13E-4A38-8083-F8FE78B4DFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9C3E514-6C06-4DBB-9823-AA324BC3524A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9C3E514-6C06-4DBB-9823-AA324BC3524A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9C3E514-6C06-4DBB-9823-AA324BC3524A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9C3E514-6C06-4DBB-9823-AA324BC3524A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192581E9-DE0D-42FF-910F-51FEF3841F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{192581E9-DE0D-42FF-910F-51FEF3841F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{192581E9-DE0D-42FF-910F-51FEF3841F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{192581E9-DE0D-42FF-910F-51FEF3841F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49E3DFB9-769C-43BD-8D8B-06FF85E02E65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49E3DFB9-769C-43BD-8D8B-06FF85E02E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49E3DFB9-769C-43BD-8D8B-06FF85E02E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49E3DFB9-769C-43BD-8D8B-06FF85E02E65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2A0DD670-1273-4616-BB2E-ED3AAD5AF8CF} = {2C6617F1-6C51-47D3-806F-28A6C4AA4DE6}
+		{BB146D77-E13E-4A38-8083-F8FE78B4DFCA} = {816DC7BA-DA6F-455A-9F6C-C3FBCA5BA7F5}
+		{E9C3E514-6C06-4DBB-9823-AA324BC3524A} = {5734723A-82CC-4FF7-A61E-72863061E234}
+		{192581E9-DE0D-42FF-910F-51FEF3841F33} = {F5806C5F-CE95-4492-BFF0-426E40B27F56}
+		{49E3DFB9-769C-43BD-8D8B-06FF85E02E65} = {6947B26C-B050-40FF-A216-D517F0BCC09C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F1D6842-359F-4A86-9732-D180651F55E7}
+	EndGlobalSection
+EndGlobal
