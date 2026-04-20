@@ -1,4 +1,4 @@
-﻿namespace ImageTools.Common;
+﻿namespace ImageTools.Interfaces;
 
 /// <summary>
 /// Specifies the types of errors that can occur during image processing.
@@ -6,9 +6,24 @@
 public enum ImageToolsExceptionCode
 {
     /// <summary>
-    /// Indicates that the specified file was not found.
+    /// Error occurred while determining the application directory.
     /// </summary>
-    FileNotFound,
+    GetCurrentDirectoryError,
+
+    /// <summary>
+    /// Error occurred while retrieving files pathes from a single directory.
+    /// </summary>
+    GetFilesFromDirectoryError,
+
+    /// <summary>
+    /// Error occurred during recursive retrieving files pathes.
+    /// </summary>
+    GetFilesFromDirectoryRecursive,
+
+    /// <summary>
+    /// Error occurred while copying a file.
+    /// </summary>
+    CopyFileError,
 
     /// <summary>
     /// Indicates that the file format is not supported.
@@ -56,7 +71,7 @@ public enum ImageToolsExceptionCode
     OptionNotFound,
 
     /// <summary>
-    /// Indicates an error occurred during the saving process.
+    /// Indicates an error occurred during the image processing.
     /// </summary>
-    SaveFailure,
+    ErrorOnImageProcessing,
 }

@@ -1,7 +1,7 @@
 ﻿#pragma warning disable CA1032 // Implement standard exception constructors
 #pragma warning disable RCS1194 // Implement exception constructors
 
-namespace ImageTools.Common;
+namespace ImageTools.Interfaces;
 
 /// <summary>
 /// Represents errors that occur during image tool operations.
