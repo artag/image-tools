@@ -1,4 +1,6 @@
-﻿namespace ImageTools.Common;
+﻿using ImageTools.Interfaces;
+
+namespace ImageTools.Common;
 
 /// <summary>
 /// Base record representing a command line option.

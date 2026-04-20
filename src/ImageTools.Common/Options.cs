@@ -1,4 +1,6 @@
-﻿namespace ImageTools.Common;
+﻿using ImageTools.Interfaces;
+
+namespace ImageTools.Common;
 
 /// <summary>
 /// A collection of <see cref="Option{T}"/>.
