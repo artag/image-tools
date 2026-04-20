@@ -1,4 +1,5 @@
 ﻿using ImageTools.Common;
+using ImageTools.Interfaces;
 
 namespace ImageTools.Unit.Tests;
 
