@@ -16,10 +16,21 @@ public class Usage(
     /// <summary>
     /// Displays help message to the log.
     /// </summary>
-    /// <typeparam name="T">Options name.</typeparam>
     /// <param name="options">Command line options.</param>
-    public void ShowUsage<T>(ICollection<Option<T>> options)
-        where T : Enum
+    public void ShowUsage(ICollection<Option> options)
+    {
+        ShotApplicationInfo();
+        if (options is null || options.Count is 0)
+        {
+            return;
+        }
+
+        log.LogInfo("Usage:");
+        ShowGroupedOptions(options);
+        ShowStandaloneOptions(options);
+    }
+
+    private void ShotApplicationInfo()
     {
         var version = versionProvider.GetVersion();
         var info = string.IsNullOrEmpty(version)
@@ -27,13 +38,25 @@ public class Usage(
             : $"{appName} v{version}";
 
         log.LogInfo(info);
-        if (options is null || options.Count is 0)
-        {
-            return;
-        }
+    }
 
-        log.LogInfo("Usage:");
-        foreach (var opt in options)
+    private void ShowGroupedOptions(ICollection<Option> options)
+    {
+        var groups = options.Where(o => o.GroupName != null).GroupBy(o => o.GroupName);
+        foreach (var group in groups)
+        {
+            log.LogInfo($"{group.Key}:");
+            foreach (var opt in group)
+            {
+                log.LogInfo($"    {opt.ToLog()}");
+            }
+        }
+    }
+
+    private void ShowStandaloneOptions(ICollection<Option> options)
+    {
+        var standalone = options.Where(o => o.GroupName == null);
+        foreach (var opt in standalone)
         {
             log.LogInfo(opt.ToLog());
         }
