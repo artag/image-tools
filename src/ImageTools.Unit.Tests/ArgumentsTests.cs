@@ -4,18 +4,18 @@ using ImageTools.Interfaces;
 namespace ImageTools.Unit.Tests;
 
 /// <summary>
-/// Tests for <see cref="Arguments{T}"/>.
+/// Tests for <see cref="Arguments"/>.
 /// </summary>
 public class ArgumentsTests
 {
-    private readonly Arguments<TestOptions> _sut;
+    private readonly Arguments _sut;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ArgumentsTests"/> class.
     /// </summary>
     public ArgumentsTests()
     {
-        _sut = new Arguments<TestOptions>();
+        _sut = new Arguments();
         SetupStandardOptions();
     }
 
@@ -95,7 +95,7 @@ public class ArgumentsTests
     [Fact]
     public void Missing_required_option_Throws_exception()
     {
-        _sut.AddOptions(new StringOption<TestOptions>(TestOptions.Test)
+        _sut.AddOptions(new StringOption("RequiredOption")
         {
             Names = ["-req"],
             IsRequired = true,
@@ -129,13 +129,15 @@ public class ArgumentsTests
         string[] args = ["-i", "15", "-d", "3.5", "-s", "valid.txt", "-bt", "-f", "a.jpg"];
 
         var actual = _sut.Process(args);
+        Assert.NotNull(actual);
+        var act = actual.AllOptions;
 
-        Assert.Equal(5, actual.Count);
-        Assert.Equal(15, actual.First(o => o.Names.Contains("-i")).Value);
-        Assert.Equal(3.5, actual.First(o => o.Names.Contains("-d")).Value);
-        Assert.Equal("valid.txt", actual.First(o => o.Names.Contains("-s")).Value!);
-        Assert.Equal("a.jpg", actual.First(o => o.Names.Contains("-f")).Value!);
-        Assert.True((bool)actual.First(o => o.Names.Contains("-bt")).Value!);
+        Assert.Equal(5, act.Count());
+        Assert.Equal(15, act.First(o => o.Names.Contains("-i")).Value);
+        Assert.Equal(3.5, act.First(o => o.Names.Contains("-d")).Value);
+        Assert.Equal("valid.txt", act.First(o => o.Names.Contains("-s")).Value!);
+        Assert.Equal("a.jpg", act.First(o => o.Names.Contains("-f")).Value!);
+        Assert.True((bool)act.First(o => o.Names.Contains("-bt")).Value!);
     }
 
     [Fact]
@@ -144,13 +146,15 @@ public class ArgumentsTests
         string[] args = ["-f", "/home/images/a.jpg"];
 
         var actual = _sut.Process(args);
+        Assert.NotNull(actual);
+        var act = actual.AllOptions;
 
-        Assert.Equal(5, actual.Count);
-        Assert.Equal(11, actual.First(o => o.Names.Contains("-i")).Value);
-        Assert.Equal(1.6, actual.First(o => o.Names.Contains("-d")).Value);
-        Assert.Equal("unknown", actual.First(o => o.Names.Contains("-s")).Value!);
-        Assert.Equal("/home/images/a.jpg", actual.First(o => o.Names.Contains("-f")).Value!);
-        Assert.False((bool)actual.First(o => o.Names.Contains("-bt")).Value!);
+        Assert.Equal(5, act.Count());
+        Assert.Equal(11, act.First(o => o.Names.Contains("-i")).Value);
+        Assert.Equal(1.6, act.First(o => o.Names.Contains("-d")).Value);
+        Assert.Equal("unknown", act.First(o => o.Names.Contains("-s")).Value!);
+        Assert.Equal("/home/images/a.jpg", act.First(o => o.Names.Contains("-f")).Value!);
+        Assert.False((bool)act.First(o => o.Names.Contains("-bt")).Value!);
     }
 
     [Fact]
@@ -164,41 +168,41 @@ public class ArgumentsTests
 
     private void SetupStandardOptions()
     {
-        var options = new Option<TestOptions>[]
+        var options = new Option[]
         {
-            new IntegerOption<TestOptions>(TestOptions.Test)
+            new IntegerOption("SomeInteger")
             {
                 Names = ["-i"],
                 Min = 10,
                 Max = 20,
                 DefaultValue = 11,
             },
-            new FloatOption<TestOptions>(TestOptions.Test)
+            new FloatOption("SomeFloat")
             {
                 Names = ["-d"],
                 Min = 1.5,
                 Max = 5.5,
                 DefaultValue = 1.6,
             },
-            new StringOption<TestOptions>(TestOptions.Test)
+            new StringOption("SomeString")
             {
                 Names = new[] { "-s" },
                 DefaultValue = "unknown",
             },
-            new BooleanOption<TestOptions>(TestOptions.Test)
+            new BooleanOption("SomeBool1")
             {
                 Names = new[] { "-bt" },
                 DefaultValue = false,
             },
-            new BooleanOption<TestOptions>(TestOptions.Test)
+            new BooleanOption("SomeBool2")
             {
                 Names = new[] { "-bf" },
             },
-            new StringOption<TestOptions>(TestOptions.Test)
+            new StringOption("DirOption")
             {
                 Names = new[] { "-dir" },
             },
-            new StringOption<TestOptions>(TestOptions.Test)
+            new StringOption("FileOption")
             {
                 Names = new[] { "-f" },
             },
