@@ -41,7 +41,9 @@ public abstract class BaseProgram(
         {
             log.LogError(ex.Message);
             if (ex.Code is not ImageToolsExceptionCode.ErrorOnImageProcessing)
+            {
                 usage.ShowUsage(allOptions);
+            }
         }
         catch (Exception ex)
         {
@@ -102,8 +104,8 @@ public abstract class BaseProgram(
         var mode = GetWorkModeOption(options);
         if (mode.OptionName is WorkMode.ProcessFile)
         {
-            var filename = mode.Value as string;
-            await Process(filename!, options);
+            var filename = mode.GetValue<string>();
+            await Process(filename, options);
             return;
         }
         else if (mode.OptionName is WorkMode.ProcessFilesInDirectory)
@@ -122,6 +124,8 @@ public abstract class BaseProgram(
     private async Task ProcessMultipleFiles(ICollection<string> files, Options options)
     {
         foreach (var file in files)
+        {
             await Process(file, options);
+        }
     }
 }
