@@ -5,18 +5,31 @@ namespace ImageTools.Common;
 /// <summary>
 /// Handles CLI arguments parsing and validation.
 /// </summary>
-/// <typeparam name="T">Options name.</typeparam>
-public class Arguments<T>
-    where T : Enum
+public class Arguments
 {
-    private readonly List<Option<T>> _options = new List<Option<T>>();
     private readonly List<string[]> _exclusiveGroups = new List<string[]>();
+    private readonly List<Option> _options;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Arguments"/> class.
+    /// </summary>
+    /// <param name="options">The option definitions.</param>
+    public Arguments(params Option[] options)
+    {
+        if (options is null)
+        {
+            _options = new List<Option>();
+            return;
+        }
+
+        _options = [.. options];
+    }
 
     /// <summary>
     /// Adds a possible options to the processor.
     /// </summary>
     /// <param name="options">The option definitions.</param>
-    public void AddOptions(params Option<T>[] options)
+    public void AddOptions(params Option[] options)
     {
         _options.AddRange(options);
     }
@@ -35,7 +48,7 @@ public class Arguments<T>
     /// </summary>
     /// <param name="args">Raw arguments from CLI.</param>
     /// <returns>Array of populated options.</returns>
-    public ICollection<Option<T>> Process(ICollection<string> args)
+    public Options Process(ICollection<string> args)
     {
         if (args is null || args.Count is 0)
         {
@@ -46,10 +59,11 @@ public class Arguments<T>
 
         ParseArgs(args.ToArray());
         ValidateRequirements();
-        return SetOptionsDefaultValues().ToArray();
+        var opts = SetOptionsDefaultValues().ToArray();
+        return new Options(opts);
     }
 
-    private IEnumerable<Option<T>> SetOptionsDefaultValues()
+    private IEnumerable<Option> SetOptionsDefaultValues()
     {
         foreach (var o in _options)
         {
@@ -87,7 +101,7 @@ public class Arguments<T>
         }
     }
 
-    private Option<T>? FindOption(string name)
+    private Option? FindOption(string name)
     {
         return _options.FirstOrDefault(o => o.Names.Contains(name));
     }
@@ -99,7 +113,7 @@ public class Arguments<T>
         {
             throw new ImageToolsException(
                 ImageToolsExceptionCode.MissingRequiredArgument,
-                $"Required option {opt.Names[0]} is missing.");
+                $"Required option '{opt.OptionName}' is missing.");
         }
 
         foreach (var group in _exclusiveGroups)
@@ -111,7 +125,7 @@ public class Arguments<T>
             {
                 throw new ImageToolsException(
                     ImageToolsExceptionCode.InvalidWorkMode,
-                    $"Exactly one of these must be set: {string.Join(", ", group)}");
+                    $"Exactly one of these option must be set: {string.Join(", ", group)}");
             }
         }
     }
