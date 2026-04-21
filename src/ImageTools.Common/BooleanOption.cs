@@ -3,10 +3,9 @@
 /// <summary>
 /// Option for boolean flags.
 /// </summary>
-/// <param name="OptionType">Option type.</param>
-public record BooleanOption<T>(T OptionType)
-    : Option<T>(OptionType, OptionValueType.Boolean)
-    where T : Enum
+/// <param name="OptionName">Option name.</param>
+public record BooleanOption(string OptionName)
+    : Option(OptionName, OptionValueType.Boolean)
 {
     /// <inheritdoc/>
     public override void Validate(string? input)

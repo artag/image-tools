@@ -5,14 +5,13 @@ namespace ImageTools.Common;
 /// <summary>
 /// Base record representing a command line option.
 /// </summary>
-/// <param name="OptionType">Option type.</param>
+/// <param name="OptionName">Option name.</param>
 /// <param name="ValueType">Option value type.</param>
 /// <param name="DefaultValue">Optional default value.</param>
-public abstract record Option<T>(
-    T OptionType,
+public abstract record Option(
+    string OptionName,
     OptionValueType ValueType,
     object? DefaultValue = default)
-    where T : Enum
 {
     /// <summary>
     /// Gets the list of alternative names (e.g., "-f", "--file").
@@ -35,6 +34,11 @@ public abstract record Option<T>(
     public object? Value { get; set; }
 
     /// <summary>
+    /// Group name of options where exactly one must be present.
+    /// </summary>
+    public string? GroupName { get; set; }
+
+    /// <summary>
     /// Validates and parses the input string value.
     /// </summary>
     /// <param name="input">The string value from command line.</param>
@@ -49,7 +53,7 @@ public abstract record Option<T>(
     {
         var namesStr = string.Join(", ", Names);
         var required = IsRequired ? "Required" : "Optional";
-        var info = $"{namesStr} : {required}. {Description}";
+        var info = $"{namesStr} \t : {required}. {Description}";
         var defaultValue = DefaultValue is null
             ? string.Empty
             : $"Default value: {DefaultValue}";
