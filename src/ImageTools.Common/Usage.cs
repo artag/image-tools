@@ -35,7 +35,7 @@ public class Usage(
         var version = versionProvider.GetVersion();
         var info = string.IsNullOrEmpty(version)
             ? $"{appName}"
-            : $"{appName} v{version}";
+            : $"{appName}, version {version}";
 
         log.LogInfo(info);
     }
