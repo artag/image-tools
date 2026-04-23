@@ -19,6 +19,7 @@
       SA1010;    <!-- Opening square brackets should be spaced correctly -->
       SA1313;    <!-- Parameter names must begin with lower case letter -->
       SA1600;    <!-- Elements must be documented -->
+      SA1611;    <!-- A C# method, constructor, delegate or indexer element is missing documentation for one or more of its parameters -->
       SP2101;    <!-- Method is too long -->
     </NoWarn>
   </PropertyGroup>
