@@ -130,13 +130,13 @@ public abstract class BaseProgram
         }
         else if (mode.OptionName is WorkMode.ProcessFilesInDirectory)
         {
-            var files = _fileSystem.GetFiles(".jpg");
+            var files = _fileSystem.GetFiles("*.jpg");
             await ProcessMultipleFiles(files, options);
             return;
         }
         else
         {
-            var files = _fileSystem.GetFilesRecursive(".jpg");
+            var files = _fileSystem.GetFilesRecursive("*.jpg");
             await ProcessMultipleFiles(files, options);
         }
     }
@@ -154,7 +154,10 @@ public abstract class BaseProgram
         try
         {
             var proccessed = await Process(filename, options);
-            Log.LogInfo($"Processed: {filename}");
+            if (proccessed)
+            {
+                Log.LogInfo($"Processed: {filename}");
+            }
         }
         catch (OperationCanceledException)
         {
